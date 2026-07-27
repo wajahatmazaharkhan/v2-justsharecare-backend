@@ -61,9 +61,7 @@ import config from "./config/config.js";
 
 dotenv.config();
 const port = config.PORT || 4000;
-const allowedOrigins = config.CORS_ORIGIN
-  ? config.CORS_ORIGIN.split(",")
-  : [];
+const allowedOrigins = config.CORS_ORIGIN ? config.CORS_ORIGIN.split(",") : [];
 
 // ===============================================================
 // 🌐 Express App & HTTP Server
@@ -153,6 +151,12 @@ export const novu = new Novu({
 // ===============================================================
 // 📌 Register Routes
 // ===============================================================
+
+/**
+ * Simulate Network Delay
+ */
+// app.use(async (req, res, next) => ( await new Promise((resolve) => setTimeout(resolve, 10000)), next()));
+
 app.use("/", userRouter);
 app.use("/api/form", FormRouter);
 app.use("/api/user", userRouter);
